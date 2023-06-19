@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Produk extends Model
 {
     use HasFactory;
+    
     protected $table = 'produk';
 
     public $timestamps = false;
@@ -25,6 +26,11 @@ class Produk extends Model
         'deskripsi',
         'kategori_produk_id'
     ];
+
+    public function produk(){
+        return $this->hasMany(pesanan::class);
+    }
+
     public function kategori_produk(){
         return $this->belongsTo(KategoriProduk::class);
     }

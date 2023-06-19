@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\DB;
 class Pesanan extends Model
 {
     use HasFactory;
+
+    public $timestamps = false;
+    
     protected $table = 'pesanan';
 
     protected $primarykey = 'id';

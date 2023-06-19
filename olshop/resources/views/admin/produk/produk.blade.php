@@ -10,7 +10,7 @@
     </ol>
     <div class="card mb-4">
         <div class="card-header">
-            <a href="{{ url('admin/produk/create') }}" class="btn btn-primary">Tambah Data</a>
+            <a class="btn btn-primary" href="{{ url('admin/produk/create') }}">Tambah Produk</a>
         </div>
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -29,9 +29,10 @@
                         <th>Minimal Stok</th>
                         <th>Deskripsi</th>
                         <th>Kategori Produk</th>
+                        <th>Action</th>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody>
                     @php
                         $no = 1;
                     @endphp
@@ -40,12 +41,16 @@
                         <td>{{ $no }}</td>
                         <td>{{ $prod->kode }}</td>
                         <td>{{ $prod->nama }}</td>
-                        <td>{{ $prod->harga_jual }}</td>
-                        <td>{{ $prod->harga_beli }}</td>
+                        <td>{{ number_format($prod->harga_jual) }}</td>
+                        <td>{{ number_format($prod->harga_beli) }}</td>
                         <td>{{ $prod->stok }}</td>
                         <td>{{ $prod->min_stok }}</td>
                         <td>{{ $prod->deskripsi }}</td>
                         <td>{{ $prod->nama_kategori }}</td>
+                        <td>
+                            <a class="btn btn-success" href="{{ url('admin/produk/edit/'. $prod->id) }}">Edit</a>
+                            <a class="btn btn-danger" href="{{ url('admin/produk/delete/'. $prod->id) }}">Delete</a>
+                        </td>
                     </tr>
                     @php
                         $no++

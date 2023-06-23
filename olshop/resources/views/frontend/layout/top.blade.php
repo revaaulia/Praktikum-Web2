@@ -28,6 +28,15 @@
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
                             <li class="nav-item"><a class="nav-link" href="{{ url('frontend/dashboard') }}">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="{{ url('frontend/about') }}">About</a></li>
+                            <li class="nav-item"><a class="nav-link" href="{{ (route('logout')) }}"
+                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                         </ul>
                     </div>
                 </div>

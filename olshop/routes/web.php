@@ -62,12 +62,6 @@ Route::get('/inputform', [ForminputController::class, 'index']);
 Route::post('/inputform', [ForminputController::class, 'output']);
 
 // ini route untuk tampilan admin
-Route::prefix('admin')-> group (function (){
-    Route::get('/dashboard', [DashboardController::class, 'index']);
-    Route::get('/produk', [ProdukController::class, 'index']);
-    Route::get('/kategori', [KategoriController::class, 'index']);
-    Route::get('/pesanan', [PesananController::class, 'index']);
-});
 
 // ini route untuk tampilan frontend
 Route::prefix('frontend')-> group (function (){
@@ -76,8 +70,8 @@ Route::get('/about', [AboutController::class, 'index']);
 });
 
 // ini route untuk tampilan backend atau admin
-Route::group(['middleware' => ['auth']], function(){
-    Route::prefix('admin')-> group (function (){
+Route::group(['middleware' => ['auth','peran:admin-manager']], function(){
+    Route::prefix('admin')->group(function (){
         Route::get('/dashboard', [DashboardController::class, 'index']);
         Route::get('/logout', [DashboardController::class, 'logout']);
         Route::get('/produk', [ProdukController::class, 'index']);

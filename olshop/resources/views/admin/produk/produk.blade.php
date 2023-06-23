@@ -1,6 +1,7 @@
 @extends('admin.layout.app')
 
 @section('content')
+@if (Auth::user()->role != 'pelanggan')
 <!-- ini adalah halaman produk -->
 <div class="container-fluid px-4">
     <h1 class="mt-4">Tables</h1>
@@ -10,7 +11,9 @@
     </ol>
     <div class="card mb-4">
         <div class="card-header">
+            @if (Auth::user()->role == 'admin')
             <a class="btn btn-primary" href="{{ url('admin/produk/create') }}">Tambah Produk</a>
+            @endif
         </div>
         <div class="card-header">
             <i class="fas fa-table me-1"></i>
@@ -49,7 +52,9 @@
                         <td>{{ $prod->nama_kategori }}</td>
                         <td>
                             <a class="btn btn-success" href="{{ url('admin/produk/edit/'. $prod->id) }}">Edit</a>
+                            @if (Auth::user()->role == 'admin')
                             <a class="btn btn-danger" href="{{ url('admin/produk/delete/'. $prod->id) }}">Delete</a>
+                            @endif
                         </td>
                     </tr>
                     @php
@@ -61,4 +66,5 @@
         </div>
     </div>
 </div>
+@endif
 @endsection
